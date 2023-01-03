@@ -1,0 +1,18 @@
+GİTHUB BAĞLAMA
+git remote add origin repolink
+git push -u origin master //branch adi
+
+bir kere -u kullandığında aynı şeyi tekrar kullanmana gerek yok
+git push origin master
+git push 
+
+Repo’daki değişiklikleri çekmek için
+git fetch origin master
+
+Local’i Remote’a Update etmek için
+	git pull origin master
+	! git pull önce fetch eder sonra dosyaları merge eder.
+
+Herhangi bir repo’yu bilgisayar’a kopyalamak klonlamak için
+git clone repolink
+	! Eğer bir repo klonlanır ise geliştiricinin daha önce yaptığı işlemler de gelir örneğin origin gitcommit v.s

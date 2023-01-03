@@ -1,0 +1,113 @@
+GitLesson
+
+- Git için kullanıcı adı belirleme ve var olan kullanıcı adını görüntüleme:
+git config –global user.name “İbrahim Karabulut”
+git config user.name
+
+- Git için e-posta adresi belirleme ve var olan e-posta adresini görüntüleme:
+git config –global user.email “i.karrabulut@gmail.com”
+git config user.email
+
+- Sisteme yeni ekleme yapma olayına “Commit” denir.
+
+- Sistemi parçalara bölüp dallandırma olayına “Branch” denir.
+
+- Commit işlemi sırasında 3 aşama vardır:
+	1) Çalışmanın hazırlandığı local klasör
+	2) Çalışmanın commit edilmek üzere kopyalandığı index klasörü
+	2) Çalışmanın tutulduğu repository
+
+- Çalışmada Git varmı durumunu kontrol etmek için:
+git status
+
+- Çalışmaya Git dahil etmek için:
+git init
+
+- Commit işlemi:
+Dosyaları takip altına alıp yapılan değişiklikleri gözetlemek için:
+git add filename
+Birden fazla dosya var ise toplu add işlemi için:
+		git add .
+Dosyayı takipten çıkarıp cache’den silmek için:
+	git rm –cached filename
+Dosyayı tanımlayıp commit etmek için:
+	git commit -m “firstNode.txt oluşturuldu”
+
+- Hızlı bir şekilde add ve ardından commit yapmak için:
+git commit -a 
+Ek olarak mesaj da eklemek için
+		git commit -a -m “açıklama”   === git commit -am “açıklama”
+
+- Commit işlemlerini görmek için:
+git log
+HEAD en son atılan commit üzerinde hangi branch’ten attığı ile beraber görünür
+	örn: (HEAD -> master)
+
+
+- Paylaşmak istemediğiniz dosyaları gizleme:
+.gitignore dosyası oluşturup içine gizlemek istediğiniz dosya adı girilir
+
+- Yeni bir branch açmak ve branch değiştirmek
+git branch feat
+git switch feat
+
+- Brancleri listeleme ve bulunduğun branch görme
+git branch
+	Remote branch’leri de görmek için
+	git branch -r
+
+- Branchleri tek branch’te birleştirme
+	! Merge işlemi hangi branch’te yapılırsa diğer branchler oraya taşınır
+git merge feat
++ Eğer dosyalarda çakışma olmadan merge edilirse Fast Forward olur      
+
+! Eğer dosyayı add yapıp cache’e eklemeden branch değiştirilirse dosya gittiğin branch’e taşınır taki commit edilene kadar.
+
+-Branch silmek için
+git branch -d branchadi
+
+- Son atılan commiti çağırmak için:
+git restore dosyaadi
+
+- Tamamlanmayan veya deneysel bazı özellikleri stash kullanabilirsin.
+stash atmadan önce dosyayı add yapmalısın
+Dosyayı stash’e atma
+git stash
+Son atılan stash çağırma
+Atılan stash’i silip çağırmak için
+		git stash pop
+Atılan stash’i silmeden çağırmak için
+		git stash apply
+Stash’teki dosyaları görmek
+	git stash list
+Stash list’ten istediğin stash çağırmak için
+	git stash apply stash@{x} 
+Tüm stash’leri silmek için
+git stash clear
+
+- Attığınız commitlerin içeriğini kontrol etmek için
+git checkout COMMIT ID
+	Kontrol ettiğiniz commit’ten yeni branch açarak devam etmek için
+	git switch -c NEW BRANCH NAME
+	Checkout işleminden çıkmak için 
+	git switch -      veya     git switch master
+
+- Yapılan değişikliklerin kalıp commitlerin silinmesi için
+git reset COMMIT ID
+	Yapılan değişiklikler ile birlikte commitlerin silinmesi için
+	git reset -hard COMMIT ID
+
+- Commit attığın değişikliği geri almak için
+cd git revert COMMIT ID
+
+- İşlemlerde yapılan değişiklikleri görmek için
+	Eğer cache’e alınan dosya ile repodaki commitin arasındaki farkı sormak için
+	git diff
+	Son commit’e göre farkı sormak için
+	git diff HEAD
+	Commitleri karşılaştırmak için
+	git diff commitid commitid   //boşluk yerine : de yazılabilir
+
+- Master merge yerine her değişiklikte baz olarak almak için
+! Eğer branch’in paylaşımda ise paylaştığın kişilerin projeleri bozulabilir
+git rebase master
